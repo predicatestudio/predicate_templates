@@ -1,0 +1,10 @@
+.src/package_name/.coverage
+.tmp/
+.vagrant/
+Vagrantfile
+ubuntu-bionic-18.04-cloudimg-console.log
+src/*/.coverage
+activate.sh
+src/*.egg-info/
+src/*/__pycache__/
+src/*/framework/
