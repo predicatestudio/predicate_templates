@@ -1,0 +1,3 @@
+include src/package_name/setup.cfg
+include src/package_name/.coveragerc
+recursive-include src/package_name/payload *
