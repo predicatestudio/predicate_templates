@@ -4,26 +4,24 @@ import shutil
 import pathlib
 import zipfile
 import configparser
-import shlex
-import json
-import subprocess
 import urllib.request
 import importlib.util
-from pathlib import Path
-from os.path import join, basename, abspath, isdir, isfile, dirname
 from setuptools import setup, find_packages
 
 assert sys.version_info >= (3, 6, 0)
+
 
 def find(name, path):
     for root, dirs, files in os.walk(path):
         if name in files:
             return os.path.join(root, name)
 
+
 def create_dirs(dirs):
     for dir in dirs:
         if not os.path.exists(dir):
             os.mkdir(dir)
+
 
 def dl_bash_repos(repos, _tmp):
     for repo in repos:
@@ -31,11 +29,13 @@ def dl_bash_repos(repos, _tmp):
         with zipfile.ZipFile(repo["filename"], "r") as zip_ref:
             zip_ref.extractall(_tmp)
 
+
 def import_file_as_module(module_name, name, filepath, _src):
     spec = importlib.util.spec_from_file_location(module_name, os.path.dirname(__file__) + "/" + _src + "/" + name + "/" + filepath)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
 
 _path = str(pathlib.Path(__file__).parent.absolute())
 _src = "src"
@@ -58,8 +58,8 @@ create_dirs(dirs)
 
 repos = [
     {
-    "url":"https://github.com/terminal-labs/bash-environment-shelf/archive/refs/heads/master.zip",
-    "filename":".tmp/download/bash-environment-shelf.zip"
+        "url": "https://github.com/terminal-labs/bash-environment-shelf/archive/refs/heads/master.zip",
+        "filename": ".tmp/download/bash-environment-shelf.zip",
     }
 ]
 dl_bash_repos(repos, _tmp)
@@ -72,9 +72,8 @@ if not os.path.exists(_path_to_framework):
     shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/framework", _path_to_framework)
 
 
-
-_fw_lib = import_file_as_module('lib_fw', name + "/" + "framework", "lib.py", _src)
-_local = import_file_as_module('bem_local', name, "local.py", _src)
+_fw_lib = import_file_as_module("lib_fw", name + "/" + "framework", "lib.py", _src)
+_local = import_file_as_module("bem_local", name, "local.py", _src)
 
 # f = open(".tmp/logs/setup", "a")
 # f.write(find("setup.cfg", "src"))

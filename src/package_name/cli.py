@@ -2,15 +2,15 @@ import os
 
 import click
 import pytest
-import requests
-
 from package_name.framework.settings import VARS, NAME, VERSION, COVERAGERC_PATH
-#mod = f"{_pgk_name}.framework.settings"
-#NAME = _import_fun(mod, "NAME")
-#VERSION = _import_fun(mod, "VERSION")
-#COVERAGERC_PATH = _import_fun(mod, "COVERAGERC_PATH")
+
+# mod = f"{_pgk_name}.framework.settings"
+# NAME = _import_fun(mod, "NAME")
+# VERSION = _import_fun(mod, "VERSION")
+# COVERAGERC_PATH = _import_fun(mod, "COVERAGERC_PATH")
 
 from package_name.framework.settings import APPDIR, TESTDIR
+
 # mod = f"{_pgk_name}.framework.derived_settings"
 # APPDIR = _import_fun(mod, "APPDIR")
 # TESTDIR = _import_fun(mod, "TESTDIR")
@@ -31,9 +31,11 @@ def cli(ctx):
 def system_group():
     pass
 
+
 @system_group.command(name="vars")
 def vars_command():
     print(VARS)
+
 
 @system_group.command(name="version")
 def version_command():
@@ -49,15 +51,7 @@ def selftest_command():
 @system_group.command(name="selfcoverage")
 def selfcoverage_command():
     os.chdir(APPDIR)
-    pytest.main(
-        [
-            f"--cov-config={COVERAGERC_PATH}",
-            f"--cov={NAME}",
-            "--cov-report",
-            "term-missing",
-            APPDIR,
-        ]
-    )
+    pytest.main([f"--cov-config={COVERAGERC_PATH}", f"--cov={NAME}", "--cov-report", "term-missing", APPDIR])
 
 
 cli.add_command(system_group)

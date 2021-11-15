@@ -1,7 +1,8 @@
 import os
 import importlib.util
 
-from os.path import dirname, realpath, abspath, join, exists
+from os.path import dirname, realpath
+
 
 def import_mod_from_fp(module_name, filepath):
     spec = importlib.util.spec_from_file_location(module_name, filepath)
@@ -9,7 +10,8 @@ def import_mod_from_fp(module_name, filepath):
     spec.loader.exec_module(module)
     return module
 
-_fw = import_mod_from_fp('lib', os.path.dirname(__file__) + "/framework/lib.py")
+
+_fw = import_mod_from_fp("lib", os.path.dirname(__file__) + "/framework/lib.py")
 
 _pkg_name = _fw.get_pkg_name()
 NAME = _fw.import_fun(f"{_pkg_name}.framework.settings", "NAME")
