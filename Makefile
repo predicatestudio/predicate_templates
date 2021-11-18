@@ -1,4 +1,4 @@
-APPNAME="package_name"
+APPNAME="bemplate"
 TYPE=python
 PYTHONVERSION="3.6.9"
 EXTRAS="none"

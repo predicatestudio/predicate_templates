@@ -48,8 +48,8 @@ version = config["metadata"]["version"]
 name = config["metadata"]["name"]
 
 repo_name = name
-package_name = repo_name.replace("-", "")
-setup_stub_name = package_name
+bemplate = repo_name.replace("-", "")
+setup_stub_name = bemplate
 setup_full_name = repo_name
 setup_description = setup_full_name.replace("-", " ")
 
@@ -80,7 +80,7 @@ _local = import_file_as_module("bem_local", name, "local.py", _src)
 # f.close()
 
 setup(
-    name=package_name,
+    name=bemplate,
     version=version,
     description=setup_description,
     url=_local.setup_url,
@@ -91,7 +91,7 @@ setup(
     packages=find_packages(where=_local.package_link),
     zip_safe=False,
     include_package_data=True,
-    install_requires=_local.pins + _local.reqs + _fw_lib.smart_reqs(_local.extras, package_name),
+    install_requires=_local.pins + _local.reqs + _fw_lib.smart_reqs(_local.extras, bemplate),
     entry_points="""
         [console_scripts]
     """

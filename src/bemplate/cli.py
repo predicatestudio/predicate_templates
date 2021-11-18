@@ -2,14 +2,14 @@ import os
 
 import click
 import pytest
-from package_name.framework.settings import VARS, NAME, VERSION, COVERAGERC_PATH
+from bemplate.framework.settings import VARS, NAME, VERSION, COVERAGERC_PATH
 
 # mod = f"{_pgk_name}.framework.settings"
 # NAME = _import_fun(mod, "NAME")
 # VERSION = _import_fun(mod, "VERSION")
 # COVERAGERC_PATH = _import_fun(mod, "COVERAGERC_PATH")
 
-from package_name.framework.settings import APPDIR, TESTDIR
+from bemplate.framework.settings import APPDIR, TESTDIR
 
 # mod = f"{_pgk_name}.framework.derived_settings"
 # APPDIR = _import_fun(mod, "APPDIR")
