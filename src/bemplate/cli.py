@@ -53,6 +53,10 @@ def selfcoverage_command():
     os.chdir(APPDIR)
     pytest.main([f"--cov-config={COVERAGERC_PATH}", f"--cov={NAME}", "--cov-report", "term-missing", APPDIR])
 
+# @click.command(name='hello-world')
+# def hello():
+#     print('hello world')
 
+# cli.add_command(hello)
 cli.add_command(system_group)
 main = cli

@@ -5,8 +5,8 @@ reqs = [
 ]
 
 extras = [
-    'uvicorn',
-    'fastapi',
+    'pytest',
+    'click',
     # "utilities-package-pinion@git+https://gitlab.com/terminallabs/utilitiespackage/utilities-package-pinion.git",
     # "utilities-package@git+https://gitlab.com/terminallabs/utilitiespackage/utilities-package.git",
 ]
