@@ -79,7 +79,6 @@ _local = import_file_as_module("bem_local", name, "local.py", _src)
 # f.write(find("setup.cfg", "src"))
 # f.close()
 
-print(_fw_lib.smart_reqs(_local.extras, package_name))
 setup(
     name=package_name,
     version=version,
@@ -92,7 +91,7 @@ setup(
     packages=find_packages(where=_local.package_link),
     zip_safe=False,
     include_package_data=True,
-    install_requires=_local.pins + _local.reqs + _fw_lib.smart_reqs(_local.extras, package_name),
+    install_requires=_local.pins + _local.reqs + _local.extras, #_fw_lib.smart_reqs(_local.extras, package_name),
     entry_points="""
         [console_scripts]
     """

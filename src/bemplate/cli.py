@@ -2,14 +2,13 @@ import os
 
 import click
 import pytest
-from bemplate.framework.settings import VARS, NAME, VERSION, COVERAGERC_PATH
-
+from .framework.settings import VARS, NAME, VERSION, COVERAGERC_PATH
 # mod = f"{_pgk_name}.framework.settings"
 # NAME = _import_fun(mod, "NAME")
 # VERSION = _import_fun(mod, "VERSION")
 # COVERAGERC_PATH = _import_fun(mod, "COVERAGERC_PATH")
 
-from bemplate.framework.settings import APPDIR, TESTDIR
+from .framework.settings import APPDIR, TESTDIR
 
 # mod = f"{_pgk_name}.framework.derived_settings"
 # APPDIR = _import_fun(mod, "APPDIR")
@@ -47,11 +46,17 @@ def selftest_command():
     os.chdir(TESTDIR)
     pytest.main(["-x", "-v", TESTDIR])
 
+print([f"--cov-config={COVERAGERC_PATH}", f"--cov={NAME}", "--cov-report", "term-missing", APPDIR])
 
 @system_group.command(name="selfcoverage")
 def selfcoverage_command():
     os.chdir(APPDIR)
-    pytest.main([f"--cov-config={COVERAGERC_PATH}", f"--cov={NAME}", "--cov-report", "term-missing", APPDIR])
+    pytest.main([
+        f"--cov-config={COVERAGERC_PATH}", 
+        f"--cov={NAME}", 
+        "--cov-report", 
+        "term-missing", 
+        APPDIR])
 
 # @click.command(name='hello-world')
 # def hello():
