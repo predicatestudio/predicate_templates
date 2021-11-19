@@ -6,12 +6,15 @@ pins = [
 # Put most packages here
 reqs = [
     "setuptools",
-    'click',
+    "click",
 ]
 # For convenience and development, not required for production
 extras = [
-    'pytest',
-    'pytest-cov',
+    "pytest",
+    "pytest-cov",
+    "radon",
+    "black",
+    "flake8",
 ]
 
 ## Package Documentation (for pypi)
@@ -52,7 +55,7 @@ package_link = "src"
 # }
 # tempfile.tempdir = TEMPDIR  # noqa: F821
 
-# ## 
+# ##
 FRAMEWORK_VERSION = "0.0.1"
 PRINT_VERBOSITY = "high"
 EXCLUDED_DIRS = [".DS_Store"]
