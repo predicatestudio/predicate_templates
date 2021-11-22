@@ -31,9 +31,13 @@ vagrant.conda: download_bash_environment_manager
 		chown $(SUDO_USER) Vagrantfile; \
 	fi
 	@sudo bash .tmp/bash-environment-manager/configuration/namespaces/types/$(TYPE)/assemble.sh $(APPNAME) $(SUDO_USER) $(NAMESPACE) $(TYPE) $(PYTHONVERSION) $(HOSTTYPE)
+nuke:
+	@if test -f "Vagrantfile";then \
+		vagrant destroy -f; \
+	fi
+	@sudo bash reset_env.sh
 
 blacken:
 	@black --line-length 150 .
-
 lint: blacken
 	@-flake8 --max-line-length=150 .
