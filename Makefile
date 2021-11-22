@@ -35,9 +35,12 @@ nuke:
 	@if test -f "Vagrantfile";then \
 		vagrant destroy -f; \
 	fi
-	@sudo bash reset_env.sh
+	@if test -f "reset_env.sh";then \
+		sudo bash reset_env.sh; \
+	fi
+	@git clean -Xdf;
 
 blacken:
-	@black --line-length 150 .
+	@black --line-length 150 .;
 lint: blacken
-	@-flake8 --max-line-length=150 .
+	@-flake8 --max-line-length=150 .;
