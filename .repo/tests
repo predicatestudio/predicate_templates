@@ -1,1 +1,4 @@
-True
+echo "    Testing Enabled:"
+$APPNAME system version
+$APPNAME system selftest
+$APPNAME system selfcoverage

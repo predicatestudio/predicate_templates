@@ -1,3 +1,5 @@
+"""This begins a basic cli. In its current state, bem calls these commands if .repo/tests is True"""
+
 import os
 import click
 import pytest
