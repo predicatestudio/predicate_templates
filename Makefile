@@ -35,8 +35,8 @@ nuke:
 	@if test -f "Vagrantfile";then \
 		vagrant destroy -f; \
 	fi
-	@if test -f "reset_env.sh";then \
-		sudo bash reset_env.sh; \
+	@if test -f ".reset_env.sh";then \
+		sudo bash .reset_env.sh; \
 	fi
 	@git clean -Xdf;
 
