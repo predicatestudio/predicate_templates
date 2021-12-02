@@ -48,7 +48,7 @@ def selfcoverage_cli():
 
 @click.command(name="core")
 def core_cli():
-    print("hello world")
+    core.main()
 
 
 cli.add_command(core_cli)

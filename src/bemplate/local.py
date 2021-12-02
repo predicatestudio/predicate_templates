@@ -1,4 +1,4 @@
-## REQUIREMENTS
+#   REQUIREMENTS
 # Package with required versions
 pins = [
     # "sample_package==1.0"
@@ -17,14 +17,14 @@ extras = [
     "flake8",
 ]
 
-## Package Documentation (for pypi)
+#   PACKAGE DOCUMENTATION (for pypi)
 setup_author = ("Terminal Labs",)
 setup_author_email = ("solutions@terminallabs.com",)
 setup_license = "see LICENSE file"
 setup_url = "https://github.com/predicatestudio/predicate_templates"
 package_link = "src"
 
-# ## Additional Configuritaion
+# #   ADDITIONAL CONFIG
 # reponame = "code"
 # SETUP_NAME = reponame
 # EGG_NAME = SETUP_NAME.replace("_", "-")
