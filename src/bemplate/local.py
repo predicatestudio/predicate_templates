@@ -1,28 +1,28 @@
-#   REQUIREMENTS
-# Package with required versions
-pins = [
-    # "sample_package==1.0"
-]
-# Put most packages here
-reqs = [
-    "setuptools",
-    "click",
-]
-# For convenience and development, not required for production
-extras = [
-    "pytest",
-    "pytest-cov",
-    "radon",
-    "black",
-    "flake8",
-]
+# #   REQUIREMENTS
+# # Package with required versions
+# pins = [
+#     # "sample_package==1.0"
+# ]
+# # Put most packages here
+# reqs = [
+#     "setuptools",
+#     "click",
+# ]
+# # For convenience and development, not required for production
+# extras = [
+#     "pytest",
+#     "pytest-cov",
+#     "radon",
+#     "black",
+#     "flake8",
+# ]
 
-#   PACKAGE DOCUMENTATION (for pypi)
-setup_author = ("Terminal Labs",)
-setup_author_email = ("solutions@terminallabs.com",)
-setup_license = "see LICENSE file"
-setup_url = "https://github.com/predicatestudio/predicate_templates"
-package_link = "src"
+# #   PACKAGE DOCUMENTATION (for pypi)
+# setup_author = ("Terminal Labs",)
+# setup_author_email = ("solutions@terminallabs.com",)
+# setup_license = "see LICENSE file"
+# setup_url = "https://github.com/predicatestudio/predicate_templates"
+# package_link = "src"
 
 # #   ADDITIONAL CONFIG
 # reponame = "code"

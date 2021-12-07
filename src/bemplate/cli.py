@@ -43,7 +43,15 @@ def selftest_cli():
 @system_group.command(name="selfcoverage")
 def selfcoverage_cli():
     os.chdir(APPDIR)
-    pytest.main([f"--cov-config={COVERAGERC_PATH}", f"--cov={NAME}", "--cov-report", "term-missing", APPDIR])
+    pytest.main(
+        [
+            f"--cov-config={COVERAGERC_PATH}",
+            f"--cov={NAME}",
+            "--cov-report",
+            "term-missing",
+            APPDIR,
+        ]
+    )
 
 
 @click.command(name="core")
@@ -54,3 +62,6 @@ def core_cli():
 cli.add_command(core_cli)
 cli.add_command(system_group)
 main = cli
+
+if __name__ == "__main__":
+    main()

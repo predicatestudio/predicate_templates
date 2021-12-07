@@ -11,6 +11,8 @@ from setuptools import setup, find_packages
 assert sys.version_info >= (3, 6, 0)
 
 
+
+
 def find(name, path):
     for root, dirs, files in os.walk(path):
         if name in files:
@@ -31,7 +33,10 @@ def dl_bash_repos(repos, _tmp):
 
 
 def import_file_as_module(module_name, name, filepath, _src):
-    spec = importlib.util.spec_from_file_location(module_name, os.path.dirname(__file__) + "/" + _src + "/" + name + "/" + filepath)
+    spec = importlib.util.spec_from_file_location(
+        module_name,
+        os.path.dirname(__file__) + "/" + _src + "/" + name + "/" + filepath,
+    )
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
