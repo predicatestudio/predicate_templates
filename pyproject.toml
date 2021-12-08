@@ -3,7 +3,7 @@ name = "bemplate"
 version = "0.2.0"
 description = "A template for BEM projects"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.6"
 license = {file = "LICENSE"}
 authors = [
   {name = "Terminal Labs"},
@@ -18,6 +18,8 @@ dependencies = [
   "setuptools",
   "click",
   "toml",
+  "pytest",
+  "pytest-cov",
   # examples:
   # "req-win-pack >= 3.1.0; sys_platform == 'win32'",
   # 'some-pkg @ git+ssh://git@github.com/someorgname/pkg-repo-name@v1.1#egg=some-pkg',
@@ -66,3 +68,6 @@ line-length = 150
 
 [tool.bem]
 source-directory = "src"
+
+[tool.pytest.ini_options]
+# https://docs.pytest.org/en/latest/reference/customize.html#pyproject-toml

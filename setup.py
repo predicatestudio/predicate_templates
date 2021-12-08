@@ -1,10 +1,15 @@
+from genericpath import exists
 from pathlib import Path
 from setuptools import setup
 from setuptools import find_packages
 import toml
 import re
+from os import path, mkdir
+import shutil
+from urllib import request
+from zipfile import ZipFile
 
-
+# Functions
 def normalize(name):
     return re.sub(r"[-_.]+", "-", name).lower()
 
@@ -15,8 +20,45 @@ def _parse_pyproject():
     return toml.load(pp.open())
 
 
+def create_dirs(dirs):
+    for dir in dirs:
+        if not path.exists(dir):
+            mkdir(dir)
+
+
+def dl_bash_repos(repos, _tmp):
+    for repo in repos:
+        request.urlretrieve(repo["url"], repo["filename"])
+        with ZipFile(repo["filename"], "r") as zip_ref:
+            zip_ref.extractall(_tmp)
+
+# VARS
 pyproject = _parse_pyproject()
 project_name = normalize(pyproject["project"]["name"])
+src = pyproject["tool"]["bem"]["source-directory"]
+dirs = [".tmp", ".tmp/download", ".tmp/logs"]
+# BEM setup and framework import
+
+create_dirs(dirs)
+
+repos = [
+    {
+        "url": "https://github.com/terminal-labs/bash-environment-shelf/archive/refs/heads/master.zip",
+        "filename": ".tmp/download/bash-environment-shelf.zip",
+    }
+]
+
+dl_bash_repos(repos, ".tmp")
+
+_path_to_framework = src + "/" + project_name + "/" + "framework"
+if path.exists(_path_to_framework):
+    shutil.rmtree(_path_to_framework)
+
+if not path.exists(_path_to_framework):
+    shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/framework", _path_to_framework)
+
+# setuptools setup
+
 setup(
     name=project_name,
     version=pyproject["project"]["version"],
@@ -30,7 +72,7 @@ setup(
     zip_safe=False,
     include_package_data=True,
     python_requires=pyproject["project"]["requires-python"],
-    install_requires=pyproject["project"]["dependencies"],  # _fw_lib.smart_reqs(_local.extras, package_name),
+    install_requires=pyproject["project"]["dependencies"],
     extras_require=pyproject["project"]["optional-dependencies"],
     entry_points="""
         [console_scripts]
