@@ -6,17 +6,18 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
 authors = [
-  {email = "Terminal Labs"},
-  {name = "solutions@terminallabs.com"}
+  {name = "Terminal Labs"},
+  {email = "solutions@terminallabs.com"}
 ]
 maintainers = [
-  {email = "Terminal Labs"},
-  {name = "solutions@terminallabs.com"}
+  {name = "Terminal Labs"},
+  {email = "solutions@terminallabs.com"}
 ]
 # pins and reqs
 dependencies = [
   "setuptools",
   "click",
+  "toml",
   # examples:
   # "req-win-pack >= 3.1.0; sys_platform == 'win32'",
   # 'some-pkg @ git+ssh://git@github.com/someorgname/pkg-repo-name@v1.1#egg=some-pkg',
@@ -38,6 +39,10 @@ ci = [
   "bemplate[test]",
   "bemplate[lint]",
 ]
+dev = [
+  "bemplate[ci]",
+  "ipython",
+]
 
 [project.urls]
 homepage = "example.com"
@@ -50,6 +55,7 @@ cli = "bemplate.cli:main"
 
 [build-system]
 requires = [
+    "toml",
     "setuptools", 
     "wheel",
 ]
@@ -59,3 +65,4 @@ build-backend = "setuptools.build_meta"
 line-length = 150
 
 [tool.bem]
+source-directory = "src"
