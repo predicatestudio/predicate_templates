@@ -21,7 +21,7 @@ flake8 --max-line-length=150 .
 
 radon cc .
 
-#### How to make a BEM Project: Python
+## How to make a BEM Project: Python
 
 ### .repo
 
@@ -34,3 +34,5 @@ radon cc .
 ### setup.cfg
 
 ### setup.py
+
+## Development Features working in BEM
