@@ -72,7 +72,7 @@ setup(
     zip_safe=False,
     include_package_data=True,
     python_requires=pyproject["project"]["requires-python"],
-    install_requires=pyproject["project"]["dependencies"],
+    install_requires=pyproject["tool"]["bem"].get("pins") + pyproject["project"]["dependencies"],
     extras_require=pyproject["project"]["optional-dependencies"],
     entry_points="""
         [console_scripts]

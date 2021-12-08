@@ -1,22 +1,3 @@
-# #   REQUIREMENTS
-# # Package with required versions
-# pins = [
-#     # "sample_package==1.0"
-# ]
-# # Put most packages here
-# reqs = [
-#     "setuptools",
-#     "click",
-# ]
-# # For convenience and development, not required for production
-# extras = [
-#     "pytest",
-#     "pytest-cov",
-#     "radon",
-#     "black",
-#     "flake8",
-# ]
-
 # #   PACKAGE DOCUMENTATION (for pypi)
 # setup_author = ("Terminal Labs",)
 # setup_author_email = ("solutions@terminallabs.com",)
