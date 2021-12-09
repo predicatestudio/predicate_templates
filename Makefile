@@ -3,7 +3,7 @@ TYPE=python
 PYTHONVERSION="3.6.9"
 EXTRAS="none"
 BEM_URL_BASE="https://github.com/terminal-labs/bash-environment-manager"
-BEM_BRANCH="dev"
+BEM_BRANCH="pyproject"
 SHELF_BRANCH="master"
 
 help:

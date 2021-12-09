@@ -58,6 +58,24 @@ if not path.exists(_path_to_framework):
     shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/framework", _path_to_framework)
 
 # setuptools setup
+def parse_extras_require(pyproject):
+    extra_requirements = pyproject["project"]["optional-dependencies"]
+    recursive_re = re.compile(f'{project_name}\[.*\]')
+    extra_re = re.compile('(?<=\[).*(?=\])')
+
+    def parse_extra(reqs):
+        parsed_reqs = []
+        for req in reqs:
+            if recursive_re.fullmatch(req):
+                extra_name = extra_re.search(req).group(0)
+                parsed_reqs += [expanded_rq for expanded_rq in parse_extra(extra_requirements[extra_name])]
+            else:
+                parsed_reqs.append(req)
+        return parsed_reqs
+
+    for extra, reqs in extra_requirements.items():
+        extra_requirements[extra] = parse_extra(reqs)
+    return(extra_requirements)
 
 setup(
     name=project_name,
@@ -73,7 +91,7 @@ setup(
     include_package_data=True,
     python_requires=pyproject["project"]["requires-python"],
     install_requires=pyproject["tool"]["bem"].get("pins") + pyproject["project"]["dependencies"],
-    extras_require=pyproject["project"]["optional-dependencies"],
+    extras_require=parse_extras_require(pyproject),
     entry_points="""
         [console_scripts]
     """
