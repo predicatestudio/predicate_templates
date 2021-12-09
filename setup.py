@@ -32,6 +32,7 @@ def dl_bash_repos(repos, _tmp):
         with ZipFile(repo["filename"], "r") as zip_ref:
             zip_ref.extractall(_tmp)
 
+
 # VARS
 pyproject = _parse_pyproject()
 project_name = normalize(pyproject["project"]["name"])
@@ -60,8 +61,8 @@ if not path.exists(_path_to_framework):
 # setuptools setup
 def parse_extras_require(pyproject):
     extra_requirements = pyproject["project"]["optional-dependencies"]
-    recursive_re = re.compile(f'{project_name}\[.*\]')
-    extra_re = re.compile('(?<=\[).*(?=\])')
+    recursive_re = re.compile(f"{project_name}\[.*\]")
+    extra_re = re.compile("(?<=\[).*(?=\])")
 
     def parse_extra(reqs):
         parsed_reqs = []
@@ -75,7 +76,8 @@ def parse_extras_require(pyproject):
 
     for extra, reqs in extra_requirements.items():
         extra_requirements[extra] = parse_extra(reqs)
-    return(extra_requirements)
+    return extra_requirements
+
 
 setup(
     name=project_name,
