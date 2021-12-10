@@ -1,11 +1,11 @@
-"""This begins a basic cli. In its current state, bem calls these commands if .repo/tests is True"""
+"""This begins a basic cli. In its current state, bem calls these commands if bemplate.repo/tests is True"""
 
 import os
 import click
 import pytest
-from . import core
-from .framework.settings import VARS, NAME, VERSION, COVERAGERC_PATH
-from .framework.settings import APPDIR, TESTDIR
+from bemplate import core
+from bemplate.framework.settings import VARS, NAME, VERSION, COVERAGERC_PATH
+from bemplate.framework.settings import APPDIR, TESTDIR
 
 PROJECT_NAME = NAME
 

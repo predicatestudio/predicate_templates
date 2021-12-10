@@ -1,3 +1,19 @@
+from pathlib import Path
+import toml
+
+
+def find_pyproject(filepath):
+    cwd = Path(filepath).absolute().parent
+    if (cwd / "pyproject.toml").is_file():
+        return cwd / "pyproject.toml"
+    else:
+        return find_pyproject(cwd)
+
+
+def parse_pyproject():
+    return toml.load(find_pyproject(__file__).open())
+
+
 # #   PACKAGE DOCUMENTATION (for pypi)
 # setup_author = ("Terminal Labs",)
 # setup_author_email = ("solutions@terminallabs.com",)
@@ -37,12 +53,25 @@
 # tempfile.tempdir = TEMPDIR  # noqa: F821
 
 # ##
-FRAMEWORK_VERSION = "0.0.1"
-PRINT_VERBOSITY = "high"
-EXCLUDED_DIRS = [".DS_Store"]
-TEMPDIR = ".tmp/scratch"
-DIRS = [f"{TEMPDIR}"]
-TEXTTABLE_STYLE = ["-", "|", "+", "-"]
+# FRAMEWORK_VERSION = "0.0.1"
+# PRINT_VERBOSITY = "high"
+# EXCLUDED_DIRS = [".DS_Store"]
+# TEMPDIR = ".tmp/scratch"
+# DIRS = [f"{TEMPDIR}"]
+# TEXTTABLE_STYLE = ["-", "|", "+", "-"]
 
 # Minimum version for this package
-MINIMUM_PYTHON_VERSION = (3, 6, 0)
+# MINIMUM_PYTHON_VERSION = (3, 6, 0)
+# GENERATED SETTINGS
+# from pyproject.toml
+project = parse_pyproject()["project"]
+
+PROJ_NAME = project.get("name")
+PROJ_VERSION = project.get("version")
+PROJ_DESC = project.get("description")
+PROJ_README = project.get("readme")
+PROJ_MIN_PYTHON = project.get("requires-python")
+PROJ_LICENSE = project.get("license")
+PROJ_AUTH = project.get("authors")
+PROJ_MAINT = project.get("maintainers")
+PROJ_DEPS = project.get("dependencies")

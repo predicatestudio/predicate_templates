@@ -1,4 +1,3 @@
-from genericpath import exists
 from pathlib import Path
 from setuptools import setup
 from setuptools import find_packages
@@ -9,7 +8,7 @@ import shutil
 from urllib import request
 from zipfile import ZipFile
 
-# Functions
+
 def normalize(name):
     return re.sub(r"[-_.]+", "-", name).lower()
 
@@ -58,11 +57,12 @@ if path.exists(_path_to_framework):
 if not path.exists(_path_to_framework):
     shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/framework", _path_to_framework)
 
+
 # setuptools setup
 def parse_extras_require(pyproject):
     extra_requirements = pyproject["project"]["optional-dependencies"]
-    recursive_re = re.compile(f"{project_name}\[.*\]")
-    extra_re = re.compile("(?<=\[).*(?=\])")
+    recursive_re = re.compile(project_name + r"\[.*\]")
+    extra_re = re.compile(r"(?<=\[).*(?=\])")
 
     def parse_extra(reqs):
         parsed_reqs = []
