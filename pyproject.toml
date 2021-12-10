@@ -71,7 +71,7 @@ pins = [
   "click > 6",
 ]
 
-[tool.bem.shelf]
+[tool.bem.codepack]
 framework = "https://github.com/terminal-labs/bash-environment-shelf/archive/refs/heads/master.zip"
 
 [tool.pytest.ini_options]

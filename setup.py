@@ -47,15 +47,25 @@ repos = [
         "filename": ".tmp/download/bash-environment-shelf.zip",
     }
 ]
+shelf_name = ".tmp/download/bash-environment-shelf.zip"
+def install_codepacks(bem_shelf):
+    for codepack, url in bem_shelf.items():
+        request.urlretrieve(codepack, shelf_name)
+        with ZipFile(shelf_name, "r") as zip_ref:
+            zip_ref.extractall(".tmp")
+        cpack_path = Path(src + "/" + project_name + "/" + "framework")
+        shutil.rmtree(cpack_path, ignore_errors=True)
+        shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/" + codepack)
 
-dl_bash_repos(repos, ".tmp")
+install_codepacks(pyproject.get("tool", {}).get("bem", {}).get("codepack", {}))
+# dl_bash_repos(repos, ".tmp")
 
-_path_to_framework = src + "/" + project_name + "/" + "framework"
-if path.exists(_path_to_framework):
-    shutil.rmtree(_path_to_framework)
+# _path_to_framework = src + "/" + project_name + "/" + "framework"
+# if path.exists(_path_to_framework):
+#     shutil.rmtree(_path_to_framework)
 
-if not path.exists(_path_to_framework):
-    shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/framework", _path_to_framework)
+# if not path.exists(_path_to_framework):
+#     shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/framework", _path_to_framework)
 
 
 # setuptools setup
