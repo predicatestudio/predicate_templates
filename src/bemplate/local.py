@@ -1,6 +1,6 @@
 from pathlib import Path
 import toml
-
+import re
 
 def find_pyproject(filepath):
     cwd = Path(filepath).absolute().parent
@@ -12,6 +12,11 @@ def find_pyproject(filepath):
 
 def parse_pyproject():
     return toml.load(find_pyproject(__file__).open())
+
+
+def list_settings(package):
+    has_dunder = re.compile(r"__.*__")
+    return {key: val for key, val, in package.__dict__.items() if (key.isupper() and not has_dunder.fullmatch(key))}
 
 
 # #   PACKAGE DOCUMENTATION (for pypi)
@@ -53,18 +58,20 @@ def parse_pyproject():
 # tempfile.tempdir = TEMPDIR  # noqa: F821
 
 # ##
-# FRAMEWORK_VERSION = "0.0.1"
-# PRINT_VERBOSITY = "high"
-# EXCLUDED_DIRS = [".DS_Store"]
-# TEMPDIR = ".tmp/scratch"
-# DIRS = [f"{TEMPDIR}"]
-# TEXTTABLE_STYLE = ["-", "|", "+", "-"]
+FRAMEWORK_VERSION = "0.0.1"
+PRINT_VERBOSITY = "high"
+EXCLUDED_DIRS = [".DS_Store"]
+TEMPDIR = ".tmp/scratch"
+DIRS = [f"{TEMPDIR}"]
+TEXTTABLE_STYLE = ["-", "|", "+", "-"]
 
 # Minimum version for this package
 # MINIMUM_PYTHON_VERSION = (3, 6, 0)
+
 # GENERATED SETTINGS
 # from pyproject.toml
-project = parse_pyproject()["project"]
+pproj = parse_pyproject()
+project = pproj["project"]
 
 PROJ_NAME = project.get("name")
 PROJ_VERSION = project.get("version")
@@ -75,3 +82,8 @@ PROJ_LICENSE = project.get("license")
 PROJ_AUTH = project.get("authors")
 PROJ_MAINT = project.get("maintainers")
 PROJ_DEPS = project.get("dependencies")
+MINIMUM_PYTHON_VERSION = PROJ_MIN_PYTHON
+COV_CONFIG = pproj.get("tool", {}).get("pytest", {}).get("pytest-cov", {}).get("cov-config")
+
+# locally derived
+PROJ_DIR = Path(__file__).absolute().parent

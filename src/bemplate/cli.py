@@ -4,16 +4,18 @@ import os
 import click
 import pytest
 from bemplate import core
-from bemplate.framework.settings import VARS, NAME, VERSION, COVERAGERC_PATH
-from bemplate.framework.settings import APPDIR, TESTDIR
+from bemplate import local
+from bemplate.local import PROJ_NAME, PROJ_DIR, PROJ_VERSION, COV_CONFIG
+from pprint import pprint
 
-PROJECT_NAME = NAME
+
+PROJECT_NAME = PROJ_NAME
 
 context_settings = {"help_option_names": ["-h", "--help"]}
 
 
 @click.group(context_settings=context_settings)
-@click.version_option(prog_name=PROJECT_NAME.capitalize(), version=VERSION)
+@click.version_option(prog_name=PROJECT_NAME.capitalize(), version=PROJ_VERSION)
 @click.pass_context
 def cli(ctx):
     pass
@@ -24,32 +26,34 @@ def system_group():
     pass
 
 
-@system_group.command(name="vars")
-def vars_cli():
-    print(VARS)
+@system_group.command(name="settings")
+def settings_cli():
+    pprint(local.list_settings(local))
 
 
 @system_group.command(name="version")
 def version_cli():
-    print(VERSION)
+    print(local.PROJ_VERSION)
 
 
 @system_group.command(name="selftest")
 def selftest_cli():
-    os.chdir(TESTDIR)
-    pytest.main(["-x", "-v", TESTDIR])
+    pytest.main([str(PROJ_DIR)])
 
 
 @system_group.command(name="selfcoverage")
 def selfcoverage_cli():
-    os.chdir(APPDIR)
+    os.chdir(PROJ_DIR)
+    cov_config = ""
+    if COV_CONFIG:
+        cov_config = f"--cov-config={COV_CONFIG}"
     pytest.main(
         [
-            f"--cov-config={COVERAGERC_PATH}",
-            f"--cov={NAME}",
+            cov_config,
+            f"--cov={PROJ_NAME}",
             "--cov-report",
             "term-missing",
-            APPDIR,
+            str(PROJ_DIR),
         ]
     )
 

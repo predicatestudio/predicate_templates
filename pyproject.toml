@@ -71,5 +71,14 @@ pins = [
   "click > 6",
 ]
 
+[tool.bem.shelf]
+framework = "https://github.com/terminal-labs/bash-environment-shelf/archive/refs/heads/master.zip"
+
 [tool.pytest.ini_options]
-# https://docs.pytest.org/en/latest/reference/customize.html#pyproject-toml
+addopts = "-x -v"
+testpaths = [
+  "tests"
+]
+
+[tool.pytest.pytest-cov]
+cov-config = ".coveragerc"
