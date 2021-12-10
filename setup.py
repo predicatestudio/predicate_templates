@@ -41,21 +41,22 @@ dirs = [".tmp", ".tmp/download", ".tmp/logs"]
 
 create_dirs(dirs)
 
-repos = [
-    {
-        "url": "https://github.com/terminal-labs/bash-environment-shelf/archive/refs/heads/master.zip",
-        "filename": ".tmp/download/bash-environment-shelf.zip",
-    }
-]
+# repos = [
+#     {
+#         "url": "https://github.com/terminal-labs/bash-environment-shelf/archive/refs/heads/master.zip",
+#         "filename": ".tmp/download/bash-environment-shelf.zip",
+#     }
+# ]
 shelf_name = ".tmp/download/bash-environment-shelf.zip"
 def install_codepacks(bem_shelf):
+    print(bem_shelf)
     for codepack, url in bem_shelf.items():
-        request.urlretrieve(codepack, shelf_name)
+        request.urlretrieve(url, shelf_name)
         with ZipFile(shelf_name, "r") as zip_ref:
             zip_ref.extractall(".tmp")
         cpack_path = Path(src + "/" + project_name + "/" + "framework")
         shutil.rmtree(cpack_path, ignore_errors=True)
-        shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/" + codepack)
+        shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/" + codepack, cpack_path)
 
 install_codepacks(pyproject.get("tool", {}).get("bem", {}).get("codepack", {}))
 # dl_bash_repos(repos, ".tmp")
