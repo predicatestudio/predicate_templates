@@ -1,6 +1,6 @@
 APPNAME="bemplate"
 TYPE=python
-PYTHONVERSION="3.6.9"
+PYTHONVERSION="3.10"
 EXTRAS="none"
 BEM_URL_BASE="https://github.com/terminal-labs/bash-environment-manager"
 BEM_BRANCH="pyproject"
