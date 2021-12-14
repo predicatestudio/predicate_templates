@@ -6,6 +6,6 @@ ubuntu-bionic-18.04-cloudimg-console.log
 activate.sh
 
 **/__pycache__/
-src/*/.coverage
-src/*.egg-info/
-src/*/framework/
+*/.coverage
+*.egg-info/
+*/framework/

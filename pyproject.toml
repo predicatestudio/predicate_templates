@@ -66,7 +66,7 @@ build-backend = "setuptools.build_meta"
 line-length = 150
 
 [tool.bem]
-source-directory = "src"
+source-directory = "bemplate"
 pins = [
   "click > 6",
 ]
