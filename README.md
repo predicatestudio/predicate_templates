@@ -72,6 +72,5 @@ Possible coming features include sub-folders relating to the desired install-too
 
 ## Development Features working in BEM
 
-```md
+
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-```
