@@ -58,7 +58,7 @@ def list_settings(package):
 # tempfile.tempdir = TEMPDIR  # noqa: F821
 
 # ##
-FRAMEWORK_VERSION = "0.0.1"
+FRAMEWORK_VERSION = "0.1.dev1" #https://www.python.org/dev/peps/pep-0440/
 PRINT_VERBOSITY = "high"
 EXCLUDED_DIRS = [".DS_Store"]
 TEMPDIR = ".tmp/scratch"
