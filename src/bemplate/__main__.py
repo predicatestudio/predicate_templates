@@ -1,4 +1,4 @@
-from . import cli
+from bemplate import cli
 
 
 def main():

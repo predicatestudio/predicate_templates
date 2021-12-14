@@ -1,9 +1,9 @@
 APPNAME="bemplate"
 TYPE=python
-PYTHONVERSION="3.6.9"
+PYTHONVERSION="3.10"
 EXTRAS="none"
 BEM_URL_BASE="https://github.com/terminal-labs/bash-environment-manager"
-BEM_BRANCH="dev"
+BEM_BRANCH="pyproject"
 SHELF_BRANCH="master"
 
 help:
@@ -43,4 +43,4 @@ nuke:
 blacken:
 	@black --line-length 150 .;
 lint: blacken
-	@flake8 --max-line-length=150 . || true;
+	@flake8 --max-line-length=150  --exclude .tmp/ . || true;
