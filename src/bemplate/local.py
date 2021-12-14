@@ -1,21 +1,30 @@
-pins = []
-
+#   REQUIREMENTS
+# Package with required versions
+pins = [
+    # "sample_package==1.0"
+]
+# Put most packages here
 reqs = [
     "setuptools",
+    "click",
 ]
-
+# For convenience and development, not required for production
 extras = [
-    "utilities-package-pinion@git+https://gitlab.com/terminallabs/utilitiespackage/utilities-package-pinion.git",
-    "utilities-package@git+https://gitlab.com/terminallabs/utilitiespackage/utilities-package.git",
+    "pytest",
+    "pytest-cov",
+    "radon",
+    "black",
+    "flake8",
 ]
 
+#   PACKAGE DOCUMENTATION (for pypi)
 setup_author = ("Terminal Labs",)
 setup_author_email = ("solutions@terminallabs.com",)
-setup_license = ("see LICENSE file",)
-setup_url = "https://github.com/terminal-labs/inflation"
+setup_license = "see LICENSE file"
+setup_url = "https://github.com/predicatestudio/predicate_templates"
 package_link = "src"
 
-# conda path
+# #   ADDITIONAL CONFIG
 # reponame = "code"
 # SETUP_NAME = reponame
 # EGG_NAME = SETUP_NAME.replace("_", "-")
@@ -46,11 +55,13 @@ package_link = "src"
 # }
 # tempfile.tempdir = TEMPDIR  # noqa: F821
 
-hello_from_local = "nice"
+# ##
 FRAMEWORK_VERSION = "0.0.1"
 PRINT_VERBOSITY = "high"
 EXCLUDED_DIRS = [".DS_Store"]
 TEMPDIR = ".tmp/scratch"
 DIRS = [f"{TEMPDIR}"]
 TEXTTABLE_STYLE = ["-", "|", "+", "-"]
+
+# Minimum version for this package
 MINIMUM_PYTHON_VERSION = (3, 6, 0)

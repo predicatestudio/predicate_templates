@@ -72,7 +72,6 @@ if not os.path.exists(_path_to_framework):
     shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/framework", _path_to_framework)
 
 
-_fw_lib = import_file_as_module("lib_fw", name + "/" + "framework", "lib.py", _src)
 _local = import_file_as_module("bem_local", name, "local.py", _src)
 
 # f = open(".tmp/logs/setup", "a")
@@ -91,7 +90,7 @@ setup(
     packages=find_packages(where=_local.package_link),
     zip_safe=False,
     include_package_data=True,
-    install_requires=_local.pins + _local.reqs + _fw_lib.smart_reqs(_local.extras, package_name),
+    install_requires=_local.pins + _local.reqs + _local.extras,  # _fw_lib.smart_reqs(_local.extras, package_name),
     entry_points="""
         [console_scripts]
     """

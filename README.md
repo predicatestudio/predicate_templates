@@ -1,3 +1,14 @@
+## Activation Process
+
+### Vagrant Conda
+sudo make vagrant.conda
+vagrant ssh
+cd /vagrant
+. activate.sh
+
+### Conda
+
+
 ## License
 
 MIT (See LICENSE file).
@@ -10,16 +21,16 @@ flake8 --max-line-length=150 .
 
 radon cc .
 
-## How to make a BEM Project: Python
+#### How to make a BEM Project: Python
 
-# .repo
+### .repo
 
-# dependencies
+### dependencies
 
-# src
+### src
 
-# Makefile
+### Makefile
 
-# setup.cfg
+### setup.cfg
 
-# setup.py
+### setup.py
