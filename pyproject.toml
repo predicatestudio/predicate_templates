@@ -3,7 +3,7 @@ name = "bemplate"
 version = "0.2.0"
 description = "A template for BEM projects"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.6"
 license = {file = "LICENSE"}
 authors = [
   {name = "Terminal Labs"},
