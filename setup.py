@@ -48,6 +48,8 @@ create_dirs(dirs)
 #     }
 # ]
 shelf_name = ".tmp/download/bash-environment-shelf.zip"
+
+
 def install_codepacks(bem_shelf):
     print(bem_shelf)
     for codepack, url in bem_shelf.items():
@@ -57,6 +59,7 @@ def install_codepacks(bem_shelf):
         cpack_path = Path(src + "/" + project_name + "/" + "framework")
         shutil.rmtree(cpack_path, ignore_errors=True)
         shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/" + codepack, cpack_path)
+
 
 install_codepacks(pyproject.get("tool", {}).get("bem", {}).get("codepack", {}))
 # dl_bash_repos(repos, ".tmp")
