@@ -107,6 +107,6 @@ setup(
     entry_points="""
         [console_scripts]
     """
-    + f"{project_name}={project_name}.__main__:main",
+    + f"{project_name}={project_name}:main",
     **setup_kwargs,
 )

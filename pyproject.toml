@@ -52,7 +52,7 @@ repository = "https://github.com/predicatestudio/predicate_templates"
 changelog = "github.com/me/spam/blob/master/CHANGELOG.md"
 
 [project.scripts]
-cli = "bemplate.cli:main"
+cli = "cli:main"
 
 [build-system]
 requires = [
