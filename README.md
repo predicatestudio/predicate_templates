@@ -51,6 +51,7 @@ The dependencies folder contains a list of environment dependencies needed for y
 
 ### src
 The src/ directory holds your project. This should contain a folder with the name of your package, and relevant files should be placed within.
+Though not recommended, the src directory can be removed and its contents placed at the top level of the repo.
 
 ### Makefile
 The makefile holds a selection of useful commands, namely the vagrant.conda, conda, nuke, and lint commands. Currently the only parts intended to be user servicable are the variables declared at the beggining. These will likely be moved to pyproject.toml in a coming version.
