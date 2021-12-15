@@ -56,7 +56,10 @@ def install_codepacks(bem_shelf):
         request.urlretrieve(url, shelf_name)
         with ZipFile(shelf_name, "r") as zip_ref:
             zip_ref.extractall(".tmp")
-        cpack_path = Path(src + "/" + project_name + "/" + "framework")
+        if src:
+            cpack_path = Path(src + "/" + project_name + "/" + "framework")
+        else:
+            cpack_path = Path(project_name + "/" + "framework")
         shutil.rmtree(cpack_path, ignore_errors=True)
         shutil.copytree(".tmp/bash-environment-shelf-master/codepacks/" + codepack, cpack_path)
 
@@ -92,6 +95,12 @@ def parse_extras_require(pyproject):
         extra_requirements[extra] = parse_extra(reqs)
     return extra_requirements
 
+setup_kwargs = {}
+if not src:
+    setup_kwargs["packages"] = [project_name]
+else:
+    setup_kwargs["packages"] = find_packages(where=src)
+    setup_kwargs["package_dir"] = {"": src}
 
 setup(
     name=project_name,
@@ -101,8 +110,8 @@ setup(
     author=[auth for auth in pyproject["project"]["authors"]],
     author_email=[auth for auth in pyproject["project"]["authors"]],
     license_files=pyproject["project"]["license"],
-    package_dir={"": pyproject["tool"]["bem"]["source-directory"]},
-    packages=find_packages(where=pyproject["tool"]["bem"]["source-directory"]),
+    # package_dir={"": src},
+    # packages=found_packages,
     zip_safe=False,
     include_package_data=True,
     python_requires=pyproject["project"]["requires-python"],
@@ -112,4 +121,5 @@ setup(
         [console_scripts]
     """
     + f"{project_name}={project_name}.__main__:main",
+    **setup_kwargs
 )
