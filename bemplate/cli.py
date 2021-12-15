@@ -47,15 +47,7 @@ def selfcoverage_cli():
     cov_config = ""
     if COV_CONFIG:
         cov_config = f"--cov-config={COV_CONFIG}"
-    pytest.main(
-        [
-            cov_config,
-            f"--cov={PROJ_NAME}",
-            "--cov-report",
-            "term-missing",
-            str(PROJ_DIR),
-        ]
-    )
+    pytest.main([cov_config, f"--cov={PROJ_NAME}", "--cov-report", "term-missing", str(PROJ_DIR)])
 
 
 @click.command(name="core")
